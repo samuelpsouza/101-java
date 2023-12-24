@@ -43,3 +43,9 @@ Gettings methods of a class
 - getMethod(name, types)
 - getDeclaredMethods()
 - getMethods()
+
+Getting constructors of a class
+
+- getConstructor(types)
+- getDeclaredConstructors()
+- getConstructors()
