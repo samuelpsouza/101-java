@@ -37,3 +37,9 @@ Getting Fields of a class
 - getField(name)
 - getDeclaredFields()
 - getFields()
+
+Gettings methods of a class
+
+- getMethod(name, types)
+- getDeclaredMethods()
+- getMethods()
