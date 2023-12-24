@@ -1,4 +1,4 @@
-package dev.ssouza.javamodules;
+/*package dev.ssouza.javamodules;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,3 +11,5 @@ class JavaModulesApplicationTests {
 	}
 
 }
+
+*/

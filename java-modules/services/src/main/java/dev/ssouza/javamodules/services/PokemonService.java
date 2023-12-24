@@ -1,6 +1,6 @@
 package dev.ssouza.javamodules.services;
 
-import dev.ssouza.javamodules.domain.Pokemon;
+import dev.ssouza.javamodules.domain.entity.Pokemon;
 
 public class PokemonService implements Service<Pokemon> {
 
