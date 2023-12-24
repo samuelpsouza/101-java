@@ -49,3 +49,7 @@ Getting constructors of a class
 - getConstructor(types)
 - getDeclaredConstructors()
 - getConstructors()
+
+Java Modifiers
+
+The getModifiers() returns an int. Each modifier is represented by a bit. For instance, the first bit is the public modifier, the second one is the private, and so forth. To know what is the modifer, we use the Modifier.java static methods.
