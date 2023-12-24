@@ -1,4 +1,4 @@
-public class Main {
+public class ClassPattern {
     
     public static void main(String[] args) throws ClassNotFoundException {
         String hello = "Hello";
