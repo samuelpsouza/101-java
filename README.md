@@ -35,4 +35,5 @@ Class helloClass = Class.forName(className);
 Getting Fields of a class
 
 - getField(name)
-- 
+- getDeclaredFields()
+- getFields()
