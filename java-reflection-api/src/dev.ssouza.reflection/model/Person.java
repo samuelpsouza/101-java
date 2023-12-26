@@ -1,20 +1,38 @@
-public class Person {
-    public String name;
-    public Integer age;
+package dev.ssouza.reflection.model;
 
-    private String email;
+public class Person {
+    private String name;
+    private Integer age;
 
     public Person() {
     }
 
-    private Person(String email, String age) {
+    private Person(String name, Integer age) {
+        this.name = name;
+        this.age = age;
     }
 
-    public Person(String email) {
-        this.email = email;
+    public static Person of(String name, Integer age) {
+        return new Person(name, age);
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String toString() {
+        return "Person [name=" + name + ", age=" + age + "]";
     }
 }
