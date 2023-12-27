@@ -2,9 +2,15 @@ package dev.ssouza.metamodels.util;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 import dev.ssouza.metamodels.annotation.PrimaryKey;
 import dev.ssouza.metamodels.annotation.Column;
+
+import dev.ssouza.metamodels.util.PrimaryKeyField;
+import dev.ssouza.metamodels.util.ColumnField;
+
+
 
 public class Metamodel<T> {
 
