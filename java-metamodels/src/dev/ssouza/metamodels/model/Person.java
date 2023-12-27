@@ -1,4 +1,4 @@
-package dev.ssouza.metamodels;
+package dev.ssouza.metamodels.model;
 
 public class Person {
     @PrimaryKey
@@ -7,6 +7,14 @@ public class Person {
     private int age;
     @Column
     private String name;
+
+    public Person() {
+
+    }
+
+    public Person(String name, int age) {
+        
+    }
 
     public long getId() {
         return id;
