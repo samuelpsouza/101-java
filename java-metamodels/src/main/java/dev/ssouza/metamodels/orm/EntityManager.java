@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public interface EntityManager<T> {
 	static <T> EntityManager<T> of(Class<T> clss){
-		return new EntityManagerImpl<>();
+		return new H2EntityManager<>();
 	}
 	
 	void persist(T t) throws IllegalArgumentException, IllegalAccessException, SQLException;

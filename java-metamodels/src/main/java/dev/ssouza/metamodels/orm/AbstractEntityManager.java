@@ -3,7 +3,6 @@ package dev.ssouza.metamodels.orm;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import dev.ssouza.metamodels.util.ColumnField;
 import dev.ssouza.metamodels.util.Metamodel;
 
-public class EntityManagerImpl<T> implements EntityManager<T> {
+public abstract class AbstractEntityManager<T> implements EntityManager<T> {
 
 	private AtomicLong idGenerator = new AtomicLong(0L);
 
@@ -21,15 +20,18 @@ public class EntityManagerImpl<T> implements EntityManager<T> {
 		Metamodel metamodel = Metamodel.of(t.getClass());
 		String sql = metamodel.buildInsertRequest();
 
-		PreparedStatement statement = prepareStatementSql(sql).andParameters(t);
-		statement.executeUpdate();
+		try(PreparedStatement statement = prepareStatementSql(sql).andParameters(t)){
+			statement.executeUpdate();
+		}
 	}
 
 	private PreparedStatementWrapper prepareStatementSql(String sql) throws SQLException {
-		Connection connection = DriverManager.getConnection("", "", "");
+		Connection connection = buildConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		return new PreparedStatementWrapper(statement);
 	}
+
+	public abstract Connection buildConnection() throws SQLException;
 
 	private class PreparedStatementWrapper {
 		private PreparedStatement statement;
@@ -80,11 +82,11 @@ public class EntityManagerImpl<T> implements EntityManager<T> {
 	public T find(Class<T> clss, Object primaryKey) throws SQLException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		Metamodel metamodel = Metamodel.of(clss);
 		String sql = metamodel.buildSelectRequest();
-		PreparedStatement statement = prepareStatementSql(sql).andPrimaryKey(primaryKey);
+		try(PreparedStatement statement = prepareStatementSql(sql).andPrimaryKey(primaryKey)){
+			ResultSet resultSet = statement.executeQuery();
+			return buildInstanceFrom(clss, resultSet);	
+		}
 		
-		ResultSet resultSet = statement.executeQuery();
-		
-		return buildInstanceFrom(clss, resultSet);
 	}
 
 	private T buildInstanceFrom(Class<T> clss, ResultSet resultSet) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, SQLException {
