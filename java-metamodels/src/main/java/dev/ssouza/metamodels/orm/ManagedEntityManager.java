@@ -8,12 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicLong;
 
+import dev.ssouza.metamodels.annotation.Inject;
 import dev.ssouza.metamodels.util.ColumnField;
 import dev.ssouza.metamodels.util.Metamodel;
 
-public abstract class AbstractEntityManager<T> implements EntityManager<T> {
+public class ManagedEntityManager<T> implements EntityManager<T> {
 
 	private AtomicLong idGenerator = new AtomicLong(0L);
+	
+	@Inject
+	private Connection connection;
 
 	@Override
 	public void persist(T t) throws IllegalArgumentException, IllegalAccessException, SQLException {
@@ -26,12 +30,9 @@ public abstract class AbstractEntityManager<T> implements EntityManager<T> {
 	}
 
 	private PreparedStatementWrapper prepareStatementSql(String sql) throws SQLException {
-		Connection connection = buildConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		return new PreparedStatementWrapper(statement);
 	}
-
-	public abstract Connection buildConnection() throws SQLException;
 
 	private class PreparedStatementWrapper {
 		private PreparedStatement statement;
