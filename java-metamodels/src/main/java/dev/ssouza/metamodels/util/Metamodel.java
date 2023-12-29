@@ -84,4 +84,11 @@ public class Metamodel {
 		String columnElement = String.join(", ", columnNames);
 		return columnElement;
 	}
+
+	public String buildSelectRequest() {
+		// select id, name, age from Person
+		
+		String columnElement = buildColumnNamesElement();
+		return "select " + columnElement + " from " + this.clss.getSimpleName() + " where " + getPrimaryKey().getName() + " = ?";
+	}
 }
