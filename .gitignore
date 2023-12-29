@@ -24,3 +24,11 @@ hs_err_pid*
 replay_pid*
 
 .fake
+/.metadata/
+
+**/.classpath
+**/.gitignore
+**/.project
+**/.settings/
+
+**/bin/

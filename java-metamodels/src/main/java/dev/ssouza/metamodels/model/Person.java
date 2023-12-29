@@ -1,5 +1,7 @@
 package dev.ssouza.metamodels.model;
 
+import dev.ssouza.metamodels.annotation.*;
+
 public class Person {
     @PrimaryKey
     private long id;
