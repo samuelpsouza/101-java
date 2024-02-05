@@ -15,23 +15,31 @@ public class Main {
         printArray(strings);
     }
 
-    public static void printArray(Integer[] numbers) {
-        Arrays.stream(numbers)
+    public static <Tipo> void printArray(Tipo[] arrayTipos) {
+        Arrays.stream(arrayTipos)
                 .forEach(System.out::println);
     }
 
-    public static void printArray(Double[] doubles) {
-        Arrays.stream(doubles)
-                .forEach(System.out::println);
-    }
+    /*
+        public static void printArray(Integer[] numbers) {
+            Arrays.stream(numbers)
+                    .forEach(System.out::println);
+        }
 
-    public static void printArray(Character[] chars) {
-        Arrays.stream(chars)
-                .forEach(System.out::println);
-    }
+        public static void printArray(Double[] doubles) {
+            Arrays.stream(doubles)
+                    .forEach(System.out::println);
+        }
 
-    public static void printArray(String[] strings) {
-        Arrays.stream(strings)
-                .forEach(System.out::println);
-    }
+        public static void printArray(Character[] chars) {
+            Arrays.stream(chars)
+                    .forEach(System.out::println);
+        }
+
+        public static void printArray(String[] strings) {
+            Arrays.stream(strings)
+                    .forEach(System.out::println);
+        }
+
+    */
 }
