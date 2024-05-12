@@ -39,8 +39,10 @@ public class App {
                                     river.set(index - 1, animal);
                                     river.set(index, null);
                                 }
+                                System.out.println(animal.getClass().getName() + " is moving the left.");
                             } else {
                                 createNewAnimalRandomly(river, animal.getClass());
+                                System.out.println(animal.getClass().getName() + " is staying still.");
                             }
                         }
                     }
@@ -60,8 +62,10 @@ public class App {
                                     river.set(index + 1, animal);
                                     river.set(index, null);
                                 }
+                                System.out.println(animal.getClass().getName() + " is moving the right.");
                             } else {
                                 createNewAnimalRandomly(river, animal.getClass());
+                                System.out.println(animal.getClass().getName() + " is staying still.");
                             }
                         }
                     }
@@ -77,8 +81,11 @@ public class App {
 
     private static void createNewAnimalRandomly(final List<Animal> river, Class<? extends Animal> clazz) {
         if(isFull(river)) {
+            System.out.println("Increasing full river");
             river.add(createAnimalBasedOnClass(clazz));
+            return;
         }
+
         var wasInserted = false;
 
         while (!wasInserted) {
@@ -116,10 +123,14 @@ public class App {
     }
 
     private static boolean isFull(final List<Animal> river) {
-        return !river
-                .stream()
-                .filter(it -> it == null)
-                .findFirst()
-                .isPresent();
+        var counter = 0;
+        for (final Animal animal : river) {
+            if(animal == null) {
+                counter++;
+                break;
+            }
+        }
+
+        return counter == 0;
     }
 }
