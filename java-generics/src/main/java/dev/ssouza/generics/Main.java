@@ -4,15 +4,17 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] numbers = { 1, 2, 3, 4, 5 };
+        int[] numbers = { 1, 2, 2, 4, 5 };
         Double[] doubles = { 1.0, 2.0, 3.0, 4.0, 5.0 };
         Character[] chars = { 'A', 'E', 'I', 'O', 'U' };
         String[] strings = { "Hello", "World" };
 
-        printArray(numbers);
+        /*printArray(numbers);
         printArray(doubles);
         printArray(chars);
         printArray(strings);
+        */
+        System.out.println(findDuplicated(numbers));
     }
 
     public static <Tipo> void printArray(Tipo[] arrayTipos) {
@@ -42,4 +44,19 @@ public class Main {
         }
 
     */
+
+    public static int findDuplicated(int[] array) {
+        for(int i=0;i<array.length;i++){
+            int index = Math.abs(array[i]) -1;
+            if(array[index] < 0){
+                System.out.println(index);
+                return Math.abs(array[i]);
+            }
+
+            System.out.println(index);
+            array[index] = -array[index];
+        }
+
+        return -1;
+    }
 }
